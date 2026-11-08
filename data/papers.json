@@ -1,0 +1,77 @@
+[
+  {
+    "paper_id": "P001",
+    "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+    "authors": ["Patrick Lewis", "Ethan Perez", "Aleksandra Piktus"],
+    "year": 2020,
+    "venue": "NeurIPS",
+    "topic": "Retrieval-Augmented Generation",
+    "abstract": "Large pre-trained language models store factual knowledge in their parameters, Carry out fine-tuning, and achieve state-of-the-art results when combined with non-parametric memory.",
+    "datasets": ["Natural Questions", "TriviaQA", "WebQuestions"],
+    "metrics": {
+      "Natural Questions Exact Match": "44.5%",
+      "TriviaQA Exact Match": "56.8%"
+    },
+    "main_finding": "RAG models generate more specific, diverse, and factual language than parametric-only baselines."
+  },
+  {
+    "paper_id": "P002",
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "authors": ["Shunyu Yao", "Jeffrey Zhao", "Dian Yu", "Karthik Narasimhan"],
+    "year": 2023,
+    "venue": "ICLR",
+    "topic": "AI Agents and Tool Use",
+    "abstract": "ReAct prompts large language models to generate both verbal reasoning traces and task-specific actions in an interleaved manner.",
+    "datasets": ["HotpotQA", "FEVER", "ALFWorld", "WebShop"],
+    "metrics": {
+      "ALFWorld Success Rate": "71.0%",
+      "WebShop Success Rate": "54.0%"
+    },
+    "main_finding": "Interleaving chain-of-thought reasoning with external tool actions significantly reduces hallucination and improves task success rates."
+  },
+  {
+    "paper_id": "P003",
+    "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+    "authors": ["Timo Schick", "Jane Dwivedi-Yu", "Roberto Dessi"],
+    "year": 2023,
+    "venue": "NeurIPS",
+    "topic": "Tool-Using Language Models",
+    "abstract": "Toolformer is a model trained to decide which APIs to call, when to call them, what arguments to pass, and how to best incorporate results into future token prediction.",
+    "datasets": ["LAMA", "Math Benchmarks", "QA Benchmarks"],
+    "metrics": {
+      "LAMA SQuAD Score": "33.8%",
+      "ASDiv Math Accuracy": "40.4%"
+    },
+    "main_finding": "Self-supervised tool learning enables smaller language models to outperform much larger models on arithmetic and factual lookup tasks."
+  },
+  {
+    "paper_id": "P004",
+    "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+    "authors": ["Akari Asai", "Zeqiu Wu", "Yizhong Wang", "Avirup Sil", "Hannaneh Hajishirzi"],
+    "year": 2024,
+    "venue": "ICLR",
+    "topic": "Retrieval-Augmented Generation",
+    "abstract": "Self-RAG trains an arbitrary LM to adaptively retrieve passages on-demand and reflect on retrieved passages and its own generations using reflection tokens.",
+    "datasets": ["PopQA", "Bio-generation", "PubHealth"],
+    "metrics": {
+      "PopQA Accuracy": "55.8%",
+      "PubHealth Accuracy": "72.4%"
+    },
+    "main_finding": "On-demand retrieval and self-reflection tokens outperform standard RAG on factuality and citation accuracy."
+  },
+  {
+    "paper_id": "P005",
+    "title": "AgentBench: Evaluating LLMs as Agents Across Diverse Environments",
+    "authors": ["Xiao Liu", "Hao Yu", "Hanchen Zhang", "Jie Tang"],
+    "year": 2024,
+    "venue": "ICLR",
+    "topic": "AI Agent Evaluation",
+    "abstract": "AgentBench is a multi-dimensional benchmark designed to evaluate LLM-as-Agent reasoning and decision-making abilities across 8 distinct environments.",
+    "datasets": ["OS", "Database", "Knowledge Graph", "Web Browsing"],
+    "metrics": {
+      "Commercial LLM Avg Score": "4.01",
+      "Open-Source LLM Avg Score": "1.52"
+    },
+    "main_finding": "Long-horizon reasoning, strict instruction following, and tool error recovery remain primary bottlenecks for open-weight agent models."
+  }
+]

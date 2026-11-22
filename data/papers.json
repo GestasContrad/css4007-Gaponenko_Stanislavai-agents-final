@@ -6,7 +6,7 @@
     "year": 2020,
     "venue": "NeurIPS",
     "topic": "Retrieval-Augmented Generation",
-    "abstract": "Large pre-trained language models store factual knowledge in their parameters, Carry out fine-tuning, and achieve state-of-the-art results when combined with non-parametric memory.",
+    "abstract": "Large pre-trained language models store factual knowledge in their parameters and achieve state-of-the-art results when combined with non-parametric retrieval memory.",
     "datasets": ["Natural Questions", "TriviaQA", "WebQuestions"],
     "metrics": {
       "Natural Questions Exact Match": "44.5%",
@@ -73,5 +73,80 @@
       "Open-Source LLM Avg Score": "1.52"
     },
     "main_finding": "Long-horizon reasoning, strict instruction following, and tool error recovery remain primary bottlenecks for open-weight agent models."
+  },
+  {
+    "paper_id": "P006",
+    "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+    "authors": ["Jason Wei", "Xuezhi Wang", "Dale Schuurmans", "Maarten Bosma"],
+    "year": 2022,
+    "venue": "NeurIPS",
+    "topic": "Prompt Engineering and Reasoning",
+    "abstract": "Generating a chain of thought—a series of intermediate reasoning steps—significantly improves the ability of large language models to perform complex arithmetic and symbolic reasoning.",
+    "datasets": ["GSM8K", "SVAMP", "CSQA"],
+    "metrics": {
+      "GSM8K Solve Rate": "58.1%",
+      "SVAMP Accuracy": "79.0%"
+    },
+    "main_finding": "Intermediate reasoning demonstrations unlock emergent multi-step problem solving in sufficiently large language models."
+  },
+  {
+    "paper_id": "P007",
+    "title": "Gorilla: Large Language Model Connected with Massive APIs",
+    "authors": ["Shishir G. Patil", "Tianjun Zhang", "Xin Wang", "Joseph E. Gonzalez"],
+    "year": 2024,
+    "venue": "NeurIPS",
+    "topic": "Tool-Using Language Models",
+    "abstract": "Gorilla is a finetuned LLaMA-based model that surpasses GPT-4 on writing API calls and adapts dynamically to API documentation changes using retriever-aware training.",
+    "datasets": ["APIBench", "TorchHub", "HuggingFace Hub"],
+    "metrics": {
+      "APIBench AST Accuracy": "83.2%",
+      "Hallucination Error Rate": "4.5%"
+    },
+    "main_finding": "Retriever-aware training substantially reduces API argument hallucinations when tool schemas evolve."
+  },
+  {
+    "paper_id": "P008",
+    "title": "GraphRAG: From Local to Global Query-Focused Summarization",
+    "authors": ["Darren Edge", "Ha Trinh", "Newman Cheng", "Jonathan Larson"],
+    "year": 2024,
+    "venue": "arXiv",
+    "topic": "Retrieval-Augmented Generation",
+    "abstract": "GraphRAG constructs an entity knowledge graph from source documents and pre-generates community summaries to answer global sensemaking queries over large corpora.",
+    "datasets": ["Podcast Transcripts", "News Articles Corpus"],
+    "metrics": {
+      "Comprehensiveness Win Rate vs Naive RAG": "72.0%",
+      "Diversity Win Rate vs Naive RAG": "68.0%"
+    },
+    "main_finding": "Hierarchical graph-based community summaries significantly outperform vector similarity search on corpus-wide analytical questions."
+  },
+  {
+    "paper_id": "P009",
+    "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+    "authors": ["Carlos E. Jimenez", "John Yang", "Alexander Wettig", "Karthik Narasimhan"],
+    "year": 2024,
+    "venue": "ICLR",
+    "topic": "AI Agent Evaluation",
+    "abstract": "SWE-bench evaluates language models on 2,294 real software engineering tasks collected from popular Python repositories requiring multi-file editing and unit test validation.",
+    "datasets": ["SWE-bench Full", "SWE-bench Lite"],
+    "metrics": {
+      "Baseline Resolved Rate": "1.96%",
+      "Oracle Retrieval Resolved Rate": "4.80%"
+    },
+    "main_finding": "Real-world codebase navigation, long-context editing, and test-driven debugging expose major limitations in standalone LLMs."
+  },
+  {
+    "paper_id": "P010",
+    "title": "Constitutional AI: Harmlessness from AI Feedback",
+    "authors": ["Yuntao Bai", "Saurav Kadavath", "Sandipan Kundu", "Amanda Askell"],
+    "year": 2022,
+    "venue": "arXiv",
+    "topic": "AI Safety and Alignment",
+    "abstract": "Constitutional AI trains harmless AI assistants through self-critique and revision guided by an explicit list of normative principles rather than human red-teaming labels.",
+    "datasets": ["HH-RLHF Red Teaming", "Helpful and Harmless Eval"],
+    "metrics": {
+      "Harmlessness Elo Improvement": "+150",
+      "Helpfulness Retention": "98.0%"
+    },
+    "main_finding": "AI-generated feedback guided by explicit principles achieves strong safety alignment while reducing evasive refusals."
   }
 ]

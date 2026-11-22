@@ -1,35 +1,57 @@
+import json
 import sys
+from typing import Optional
+
 from src.llm_client import LLMClient
+from src.tools import extract_key_metrics, get_paper_details, search_papers
 
 
-def run_demo_query(prompt: str | None = None) -> None:
-    """Executes a single working LLM request and prints the structured result."""
-    query = prompt or (
-        "Briefly explain the difference between standard Retrieval-Augmented Generation (RAG) "
-        "and agentic tool use in 3 bullet points."
-    )
+def run_core_demo(query: str = "RAG", year_from: int = 2024, paper_id: str = "P004") -> None:
+    """Demonstrates core Week 12 functionality: repository tools + validated structured LLM output."""
+    print(f"=== 1. Searching papers (query='{query}', year_from={year_from}) ===")
+    search_output = search_papers(query=query, year_from=year_from)
+    print(json.dumps(search_output, indent=2))
 
-    print(f"Initializing LLMClient...")
+    print(f"\n=== 2. Retrieving details & metrics for '{paper_id}' ===")
+    details = get_paper_details(paper_id)
+    metrics = extract_key_metrics(paper_id)
+
+    if "error" in details:
+        print(f"[Repository Error] {details['error']}")
+        return
+
+    print(f"Title: {details['title']} ({details['year']}, {details['venue']})")
+    print(f"Metrics: {metrics.get('metrics', {})}")
+
+    print("\n=== 3. Generating Pydantic-validated structured LLM analysis ===")
     try:
         client = LLMClient()
     except ValueError as err:
         print(f"[Configuration Error] {err}")
         sys.exit(1)
 
-    print(f"Sending request to model '{client.model}'...")
-    print(f"User Prompt: {query}\n" + "-" * 60)
+    analysis = client.generate_structured_analysis(details, metrics)
+    if analysis["success"]:
+        print("Validated Structured Output:")
+        print(json.dumps(analysis["data"], indent=2))
+    else:
+        print(f"[LLM Error] {analysis['error']}")
 
-    result = client.generate_response(query)
 
+def run_single_prompt(prompt: Optional[str] = None) -> None:
+    """Fallback single prompt execution from Week 11."""
+    client = LLMClient()
+    result = client.generate_response(prompt or "Explain RAG in 2 sentences.")
     if result["success"]:
-        print("LLM Response:\n")
         print(result["content"])
-        print("-" * 60)
-        print(f"Token Usage: {result['usage']}")
     else:
         print(f"[Error] {result['error']}")
 
 
 if __name__ == "__main__":
-    user_arg = " ".join(sys.argv[1:]).strip() if len(sys.argv) > 1 else None
-    run_demo_query(user_arg)
+    if len(sys.argv) > 1 and sys.argv[1] == "--ask":
+        custom_prompt = " ".join(sys.argv[2:]).strip()
+        run_single_prompt(custom_prompt)
+    else:
+        target_id = sys.argv[1] if len(sys.argv) > 1 else "P004"
+        run_core_demo(paper_id=target_id)
